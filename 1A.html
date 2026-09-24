@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#7c3aed">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Урок 1A · Повседневные занятия · Vocab</title>
+<style>
+:root{--primary:#7c3aed;--primary-soft:#f3e8ff;--success:#10b981;--success-soft:#d1fae5;--warning:#f59e0b;--warning-soft:#fef3c7;--danger:#ef4444;--danger-soft:#fee2e2;--text:#1e1b4b;--muted:#6b7280;--border:#e5e7eb;--card:#fff;--bg:#faf5ff;--radius:18px;--shadow:0 4px 20px rgba(124,58,237,.08);--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;touch-action:manipulation}
+#app{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;background:var(--bg);position:relative}
+.header{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;padding:calc(.85rem + var(--safe-top)) 1rem .95rem;display:flex;align-items:center;gap:.5rem;flex-shrink:0;box-shadow:0 4px 16px rgba(124,58,237,.25)}
+.header .btn-icon{width:42px;height:42px;border:none;background:rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:1.25rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.header .title{flex:1;font-size:.98rem;font-weight:800;line-height:1.2}
+.stats{display:flex;gap:.35rem;font-size:.75rem;align-items:center}
+.stats .pill{background:rgba(255,255,255,.25);padding:.2rem .5rem;border-radius:999px;font-weight:700}
+.xp-bar{height:4px;background:rgba(255,255,255,.25);margin-top:.45rem;border-radius:2px;overflow:hidden}
+.xp-bar span{display:block;height:100%;background:#fde047;border-radius:2px;transition:width .4s}
+.due-bar{display:none;align-items:center;justify-content:space-between;padding:.65rem 1rem;background:linear-gradient(90deg,#fef3c7,#fde68a);border-bottom:2px solid #f59e0b;color:#92400e;font-size:.85rem;font-weight:700;cursor:pointer}
+.due-bar.visible{display:flex}
+.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.9rem .85rem calc(5.4rem + var(--safe-bottom))}
+.bottom-nav{position:absolute;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:.45rem 0 calc(.45rem + var(--safe-bottom));z-index:40;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:.12rem;border:none;background:transparent;padding:.35rem .45rem;font-size:.65rem;font-weight:700;color:var(--muted);cursor:pointer;min-width:56px;border-radius:12px}
+.nav-btn .icon{font-size:1.35rem;line-height:1}
+.nav-btn.active{color:var(--primary);background:var(--primary-soft)}
+.overlay{position:fixed;inset:0;background:rgba(30,27,75,.45);z-index:50;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:auto}
+.side-menu{position:fixed;top:0;left:0;width:min(300px,88vw);height:100%;background:var(--card);z-index:60;transform:translateX(-105%);transition:transform .3s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;padding-top:var(--safe-top);box-shadow:8px 0 32px rgba(0,0,0,.15);overflow-y:auto}
+.side-menu.open{transform:translateX(0)}
+.menu-header{padding:1.15rem 1.1rem .9rem;background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;font-size:1.05rem;font-weight:800}
+.menu-section{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:.9rem 1.1rem .3rem;font-weight:800}
+.menu-item{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;border:none;background:transparent;padding:.75rem 1.1rem;font-size:.92rem;font-weight:650;color:var(--text);cursor:pointer}
+.menu-item:active{background:var(--primary-soft);color:var(--primary)}
+.menu-item .mi-icon{font-size:1.25rem;width:26px;text-align:center}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(124,58,237,.08);padding:1rem;margin-bottom:.75rem}
+.welcome{background:linear-gradient(135deg,#f3e8ff,#fce7f3);border-radius:var(--radius);padding:.95rem 1rem;margin-bottom:.9rem;border:1px solid rgba(124,58,237,.12)}
+.welcome h2{font-size:.98rem;font-weight:800;margin-bottom:.2rem}
+.welcome p{font-size:.82rem;color:var(--muted);line-height:1.4}
+.level-card{display:flex;align-items:center;gap:.75rem;background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;border-radius:var(--radius);padding:.9rem 1rem;margin-bottom:.9rem;box-shadow:0 4px 16px rgba(124,58,237,.3)}
+.level-card .lvl{font-size:1.6rem;font-weight:800}
+.level-card .meta{flex:1;font-size:.8rem;opacity:.95}
+.badge-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+.mini-badge{background:rgba(255,255,255,.25);padding:.15rem .45rem;border-radius:999px;font-size:.68rem;font-weight:700}
+.word-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+.word-chip{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:.7rem .4rem;text-align:center;cursor:pointer;box-shadow:var(--shadow);min-height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.word-chip:active{transform:scale(.96)}
+.word-chip.learned{border-color:var(--success);background:var(--success-soft)}
+.word-chip.difficult{border-color:var(--warning);background:var(--warning-soft)}
+.word-chip.custom{border-style:dashed;border-color:#a855f7}
+.word-chip .emoji{font-size:1.55rem;line-height:1.15}
+.word-chip .term{font-weight:700;font-size:.78rem;margin-top:.15rem;word-break:break-word;line-height:1.2}
+.word-chip .chip-img{width:100%;height:52px;object-fit:cover;border-radius:8px;margin-bottom:.25rem}
+.term-big{font-size:1.4rem;font-weight:800;color:var(--primary);text-align:center}
+.phonetic{text-align:center;color:var(--muted);font-size:.85rem;font-style:italic;margin:.2rem 0 .4rem}
+.illustration{text-align:center;font-size:2.8rem;margin:.35rem 0}
+.word-photo{display:block;max-width:100%;max-height:140px;margin:.4rem auto;border-radius:14px;object-fit:cover}
+.meaning-box{background:#f5f3ff;border-left:4px solid var(--primary);padding:.75rem .9rem;border-radius:0 12px 12px 0;margin:.5rem 0;font-size:.92rem;line-height:1.4}
+.example-box{background:var(--success-soft);border-left:4px solid var(--success);padding:.7rem .9rem;border-radius:0 12px 12px 0;margin:.4rem 0 .7rem;font-style:italic;font-size:.88rem;line-height:1.4}
+.btn-row{display:flex;gap:.45rem;flex-wrap:wrap;justify-content:center;margin:.55rem 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.3rem;background:var(--primary);color:#fff;border:none;padding:.58rem .95rem;border-radius:12px;font-size:.88rem;font-weight:700;cursor:pointer;min-height:44px;box-shadow:0 2px 8px rgba(124,58,237,.25)}
+.btn:active{transform:scale(.97)}
+.btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);box-shadow:none}
+.btn-success{background:var(--success)}
+.btn-danger{background:var(--danger)}
+.btn-warning{background:var(--warning);color:#fff}
+.btn-ghost{background:transparent;color:var(--muted);box-shadow:none}
+.btn-lg{width:100%;padding:.8rem;font-size:1rem;border-radius:14px}
+.btn-youglish{background:#0ea5e9;box-shadow:0 2px 8px rgba(14,165,233,.3)}
+.tabs{display:flex;gap:.3rem;overflow-x:auto;margin:.55rem 0;padding-bottom:.2rem}
+.tab{flex-shrink:0;padding:.45rem .75rem;border-radius:999px;font-size:.8rem;font-weight:700;background:#f3e8ff;color:var(--muted);border:none;cursor:pointer}
+.tab.active{background:var(--primary);color:#fff}
+.tab-content{display:none}.tab-content.active{display:block}
+.option{display:block;width:100%;text-align:left;padding:.9rem 1rem;margin-bottom:.45rem;border-radius:14px;border:2px solid var(--border);background:#fff;font-size:.95rem;font-weight:600;cursor:pointer}
+.option.correct{border-color:var(--success);background:var(--success-soft)}
+.option.wrong{border-color:var(--danger);background:var(--danger-soft)}
+.input-wrap{margin-bottom:.6rem}
+.input-wrap input,.input-wrap textarea{width:100%;padding:.9rem 1rem;border:2px solid var(--border);border-radius:14px;font-size:1.02rem;font-family:inherit;outline:none;-webkit-appearance:none}
+.input-wrap input:focus,.input-wrap textarea:focus{border-color:var(--primary)}
+.feedback{margin-top:.5rem;padding:.7rem .9rem;border-radius:12px;font-size:.9rem;font-weight:600;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:var(--success-soft);color:#065f46}
+.feedback.err{background:var(--danger-soft);color:#991b1b}
+.flashcard{perspective:1000px;height:210px;margin-bottom:1rem}
+.flashcard-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg)}
+.flash-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);border:2px solid rgba(124,58,237,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.2rem;text-align:center}
+.flash-back{transform:rotateY(180deg);background:linear-gradient(135deg,#f3e8ff,#fce7f3)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+.match-item{padding:.8rem .45rem;border-radius:12px;border:2px solid var(--border);background:#fff;font-size:.82rem;font-weight:650;text-align:center;cursor:pointer;min-height:52px;display:flex;align-items:center;justify-content:center}
+.match-item.selected{border-color:var(--primary);background:var(--primary-soft)}
+.match-item.matched{opacity:.4;pointer-events:none;border-color:var(--success);background:var(--success-soft)}
+.order-bank{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:.9rem 0;min-height:42px}
+.order-slot{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;align-items:center;min-height:52px;padding:.6rem;border:2px dashed #c4b5fd;border-radius:14px;background:#f5f3ff;margin-bottom:.7rem}
+.order-chip{padding:.45rem .75rem;border-radius:12px;border:2px solid var(--border);background:#fff;font-size:.88rem;font-weight:700;cursor:pointer;user-select:none}
+.order-chip.used{opacity:.35;pointer-events:none}
+.order-chip.in-slot{border-color:var(--primary);background:var(--primary-soft)}
+.gap-sentence{font-size:1.02rem;font-weight:650;line-height:1.7;text-align:center;margin:.9rem 0;padding:.35rem}
+.gap-blank{display:inline-block;min-width:88px;border-bottom:3px solid var(--primary);margin:0 .15rem;padding:0 .25rem;color:var(--primary);font-weight:800}
+.gap-options{display:flex;flex-direction:column;gap:.4rem;margin-top:.65rem}
+.srs-grade{display:flex;gap:.45rem;margin-top:.95rem}
+.srs-grade .btn{flex:1;font-size:.8rem;padding:.6rem .3rem}
+.sheet-overlay{position:fixed;inset:0;background:rgba(30,27,75,.45);z-index:70;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet-overlay.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:92vh;background:var(--card);border-radius:24px 24px 0 0;z-index:80;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:.95rem 1rem calc(1.25rem + var(--safe-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sheet.open{transform:translateY(0)}
+.sheet-handle{width:40px;height:5px;background:#d1d5db;border-radius:3px;margin:0 auto .9rem}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.95rem}
+.stat-box{background:var(--card);border-radius:14px;padding:.95rem;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(124,58,237,.08)}
+.stat-box .num{font-size:1.5rem;font-weight:800;color:var(--primary)}
+.stat-box .lbl{font-size:.75rem;color:var(--muted);font-weight:600}
+.progress-bar{height:9px;background:#e9d5ff;border-radius:5px;overflow:hidden;margin:.6rem 0}
+.progress-bar span{display:block;height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:5px}
+.empty-state{text-align:center;padding:2.2rem 1.3rem;color:var(--muted)}
+.empty-state .big{font-size:2.6rem;margin-bottom:.45rem}
+.empty-state p{font-size:.95rem;font-weight:600;line-height:1.4}
+.hidden{display:none!important}
+.mic-status{text-align:center;font-size:.84rem;color:var(--muted);margin:.5rem 0;min-height:1.2rem;font-weight:600}
+.hint{font-size:.84rem;color:var(--muted);margin-bottom:.4rem;font-weight:600}
+.study-actions{display:flex;gap:.45rem;margin-bottom:.7rem;flex-wrap:wrap}
+.study-actions .btn{flex:1;min-width:calc(50% - .25rem);font-size:.8rem;padding:.6rem .35rem}
+.note{background:linear-gradient(135deg,#f3e8ff,#fce7f3);color:#5b21b6;padding:.6rem .8rem;border-radius:12px;font-size:.78rem;font-weight:650;margin-bottom:.8rem;line-height:1.35}
+.section-title{font-size:.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:.9rem 0 .45rem}
+.mode-hint{text-align:center;font-size:.82rem;color:var(--muted);margin-bottom:.7rem;font-weight:600}
+.continue-wrap{margin-top:.85rem}
+.combo-pill{display:inline-block;background:#fef3c7;color:#92400e;padding:.2rem .55rem;border-radius:999px;font-size:.75rem;font-weight:800;margin-left:.35rem}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden}
+.confetti i{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall 1.2s ease-out forwards}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.add-form label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin:.55rem 0 .2rem}
+.add-form input,.add-form textarea{width:100%;padding:.75rem .9rem;border:2px solid var(--border);border-radius:12px;font-size:1rem;font-family:inherit;-webkit-appearance:none}
+.add-form .emoji-row{display:flex;gap:.3rem;flex-wrap:wrap;margin:.3rem 0}
+.add-form .emoji-pick{font-size:1.3rem;width:40px;height:40px;border:2px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.add-form .emoji-pick.selected{border-color:var(--primary);background:var(--primary-soft)}
+.story-words{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:.7rem 0}
+.story-tag{background:var(--primary-soft);color:var(--primary);padding:.35rem .7rem;border-radius:999px;font-weight:700;font-size:.85rem}
+.daily-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1.5px solid #10b981;border-radius:var(--radius);padding:.85rem 1rem;margin-bottom:.9rem}
+.daily-box h3{font-size:.9rem;font-weight:800;color:#065f46;margin-bottom:.25rem}
+.daily-box p{font-size:.8rem;color:#047857}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="header">
+    <button class="btn-icon" id="btnMenu" type="button">☰</button>
+    <button class="btn-icon hidden" id="btnBack" type="button">←</button>
+    <div style="flex:1;min-width:0">
+      <div class="title" id="headerTitle">Урок 1A · Повседневные занятия</div>
+      <div class="xp-bar"><span id="xpFill" style="width:0%"></span></div>
+    </div>
+    <div class="stats"><span class="pill" id="statLevel">Lv.1</span><span class="pill" id="statLearned">0</span><span id="statStreak">🔥0</span></div>
+  </header>
+  <div class="due-bar" id="dueBar"><span id="dueText">Повторить сегодня: 0</span><span>→</span></div>
+  <main class="main">
+    <div id="viewStudy"></div>
+    <div id="viewMode" class="hidden"></div>
+  </main>
+  <nav class="bottom-nav">
+    <button class="nav-btn active" type="button" id="navHome"><span class="icon">📚</span><span>Слова</span></button>
+    <button class="nav-btn" type="button" id="navPractice"><span class="icon">🎯</span><span>Практика</span></button>
+    <button class="nav-btn" type="button" id="navReview"><span class="icon">🔄</span><span>Повтор</span></button>
+    <button class="nav-btn" type="button" id="navProgress"><span class="icon">📊</span><span>Прогресс</span></button>
+  </nav>
+</div>
+<div class="overlay" id="overlay"></div>
+<nav class="side-menu" id="sideMenu">
+  <div class="menu-header">✨ Урок 1A · Повседневные занятия</div>
+  <div class="menu-section">Упражнения</div>
+  <button class="menu-item" type="button" data-mode="flashcards"><span class="mi-icon">🃏</span> Карточки</button>
+  <button class="menu-item" type="button" data-mode="match"><span class="mi-icon">🔗</span> Соедини пары</button>
+  <button class="menu-item" type="button" data-mode="quiz"><span class="mi-icon">❓</span> Тест</button>
+  <button class="menu-item" type="button" data-mode="gaps"><span class="mi-icon">📝</span> Пропуски</button>
+  <button class="menu-item" type="button" data-mode="order"><span class="mi-icon">🔀</span> Порядок слов</button>
+  <button class="menu-item" type="button" data-mode="spelling"><span class="mi-icon">✍️</span> Правописание</button>
+  <button class="menu-item" type="button" data-mode="sentences"><span class="mi-icon">✏️</span> Предложения</button>
+  <button class="menu-item" type="button" data-mode="story"><span class="mi-icon">📖</span> История (новое!)</button>
+  <button class="menu-item" type="button" data-mode="pronunciation"><span class="mi-icon">🎤</span> Произношение</button>
+  <div class="menu-section">Прогресс</div>
+  <button class="menu-item" type="button" data-mode="difficult"><span class="mi-icon">⚠️</span> Сложные слова</button>
+  <button class="menu-item" type="button" data-mode="progress"><span class="mi-icon">📊</span> Статистика</button>
+  <button class="menu-item" type="button" data-mode="review"><span class="mi-icon">🔄</span> Повторение</button>
+  <div class="menu-section">Навигация</div>
+  <button class="menu-item" type="button" id="menuHome"><span class="mi-icon">📚</span> Все слова</button>
+</nav>
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="sheet" id="termSheet"><div class="sheet-handle"></div><div id="sheetContent"></div></div>
+<script>
+
+(function(){
+"use strict";
+var LESSON_ID="1A";
+var LESSON_TITLE="Урок 1A · Повседневные занятия";
+var WORDS=[{term:"sleeping",phonetic:"/ˈsliːpɪŋ/",definition:"спать / сон",example:"Sleeping for eight hours makes me feel great.",emoji:"😴",note:"занятие"},{term:"doing homework",phonetic:"/ˈduːɪŋ ˈhəʊmwɜːk/",definition:"делать домашнее задание",example:"I spend an hour doing homework every evening.",emoji:"📝",note:"занятие"},{term:"doing exercise",phonetic:"/ˈduːɪŋ ˈeksəsaɪz/",definition:"заниматься физическими упражнениями",example:"She does exercise three times a week.",emoji:"🏋️",note:"занятие"},{term:"messaging on your phone",phonetic:"/ˈmesɪdʒɪŋ ɒn jɔː fəʊn/",definition:"переписываться по телефону",example:"He spends hours messaging on his phone.",emoji:"📱",note:"занятие"},{term:"doing housework",phonetic:"/ˈduːɪŋ ˈhaʊswɜːk/",definition:"заниматься домашними делами",example:"We do housework together on Sundays.",emoji:"🧹",note:"занятие"},{term:"difficult",phonetic:"/ˈdɪfɪkəlt/",definition:"трудный",example:"This exercise is quite difficult.",emoji:"🧩",note:"прилагательное"},{term:"boring",phonetic:"/ˈbɔːrɪŋ/",definition:"скучный",example:"I find housework really boring.",emoji:"🥱",note:"прилагательное"},{term:"interesting",phonetic:"/ˈɪntrəstɪŋ/",definition:"интересный",example:"This book is really interesting.",emoji:"🤔",note:"прилагательное"},{term:"easy",phonetic:"/ˈiːzi/",definition:"лёгкий / простой",example:"The test was easy for her.",emoji:"✅",note:"прилагательное"},{term:"enjoy",phonetic:"/ɪnˈdʒɔɪ/",definition:"наслаждаться; получать удовольствие",example:"I enjoy reading before bed.",emoji:"😊",note:"глагол"},{term:"laugh",phonetic:"/lɑːf/",definition:"смеяться",example:"We laughed a lot at the party.",emoji:"😂",note:"глагол"},{term:"say",phonetic:"/seɪ/",definition:"говорить; сказать",example:"What did she say to you?",emoji:"💬",note:"глагол"},{term:"less than",phonetic:"/les ðæn/",definition:"меньше чем",example:"I sleep less than seven hours a night.",emoji:"➖",note:"выражение"},{term:"being",phonetic:"/ˈbiːɪŋ/",definition:"быть; находиться",example:"Being on time is important to him.",emoji:"🧍",note:"глагол (быть)"},{term:"more",phonetic:"/mɔː/",definition:"больше; ещё",example:"I need more time to finish this.",emoji:"➕",note:"наречие"},{term:"find a way to",phonetic:"/faɪnd ə weɪ tuː/",definition:"найти способ что-то сделать",example:"She found a way to fit in exercise every day.",emoji:"🧭",note:"выражение"},{term:"busy",phonetic:"/ˈbɪzi/",definition:"занятый",example:"He is too busy to relax this week.",emoji:"📅",note:"прилагательное"},{term:"need to",phonetic:"/niːd tuː/",definition:"нужно / необходимо что-то сделать",example:"I need to do my homework tonight.",emoji:"❗",note:"выражение"},{term:"taking photos",phonetic:"/ˈteɪkɪŋ ˈfəʊtəʊz/",definition:"фотографировать / делать фотографии",example:"She loves taking photos on holiday.",emoji:"📸",note:"занятие"},{term:"healthy",phonetic:"/ˈhelθi/",definition:"здоровый",example:"Eating vegetables keeps you healthy.",emoji:"🥗",note:"прилагательное"},{term:"sport keeps me healthy",phonetic:"/spɔːt kiːps miː ˈhelθi/",definition:"спорт помогает мне оставаться здоровым",example:"I play football because sport keeps me healthy.",emoji:"⚽",note:"фраза"}];
+var STORAGE_KEY="vocab_"+LESSON_ID+"_v2";
+var FEEDBACK_MS_OK=2200;
+var FEEDBACK_MS_ERR=3500;
+var state={learned:{},difficult:{},srs:{},streak:0,lastStudyDate:null,points:0,dailyGoal:10,todayCount:0,modeSet:[],customWords:[],photos:{},badges:{},combo:0,bestCombo:0,dailyDone:null};
+var inMode=false;
+
+function loadState(){try{var r=localStorage.getItem(STORAGE_KEY);if(r){var s=JSON.parse(r);Object.keys(s).forEach(function(k){if(k in state)state[k]=s[k];});}}catch(e){}var today=new Date().toDateString();if(state.lastStudyDate&&state.lastStudyDate!==today){var y=new Date();y.setDate(y.getDate()-1);if(state.lastStudyDate!==y.toDateString())state.streak=0;}}
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({learned:state.learned,difficult:state.difficult,srs:state.srs,streak:state.streak,lastStudyDate:state.lastStudyDate,points:state.points,dailyGoal:state.dailyGoal,todayCount:state.todayCount,customWords:state.customWords||[],photos:state.photos||{},badges:state.badges||{},bestCombo:state.bestCombo||0,dailyDone:state.dailyDone}));}catch(e){if(e.name==="QuotaExceededError"){alert("Не хватает места для фото — удали старые картинки");}}}
+function levelFromPoints(p){return Math.floor(Math.sqrt((p||0)/50))+1;}
+function xpProgress(){var p=state.points||0;var lvl=levelFromPoints(p);var prev=(lvl-1)*(lvl-1)*50;var next=lvl*lvl*50;var pct=next>prev?Math.min(100,Math.round((p-prev)/(next-prev)*100)):0;return{lvl:lvl,pct:pct,next:next,prev:prev};}
+function awardBadge(id,label){if(!state.badges)state.badges={};if(state.badges[id])return;state.badges[id]=label;saveState();toast("🏅 Новый бейдж: "+label);}
+function checkBadges(){var L=learnedCount();if(L>=5)awardBadge("five","5 слов");if(L>=10)awardBadge("ten","10 слов");if(L>=20)awardBadge("twenty","20 слов");if((state.streak||0)>=3)awardBadge("streak3","Серия 3");if((state.streak||0)>=7)awardBadge("streak7","Серия 7");if((state.bestCombo||0)>=5)awardBadge("combo5","Комбо x5");if((state.points||0)>=200)awardBadge("pts200","200 очков");}
+function toast(msg){var el=document.createElement("div");el.style.cssText="position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);background:#1e1b4b;color:#fff;padding:.65rem 1.1rem;border-radius:999px;font-weight:700;font-size:.85rem;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:90%";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove();},2800);}
+function confettiBurst(){var box=document.createElement("div");box.className="confetti";document.body.appendChild(box);var colors=["#7c3aed","#c026d3","#f59e0b","#10b981","#0ea5e9","#ef4444"];for(var i=0;i<28;i++){var d=document.createElement("i");d.style.left=Math.random()*100+"%";d.style.top="-10px";d.style.background=colors[i%colors.length];d.style.animationDelay=(Math.random()*0.3)+"s";box.appendChild(d);}setTimeout(function(){box.remove();},1400);}
+function addPoints(n,opts){opts=opts||{};state.points=(state.points||0)+n;if(opts.combo){state.combo=(state.combo||0)+1;if(state.combo> (state.bestCombo||0))state.bestCombo=state.combo;if(state.combo>=3){var bonus=Math.min(10,state.combo);state.points+=bonus;}}else{state.combo=0;}saveState();updateHeaderStats();checkBadges();}
+function markStudiedToday(){var today=new Date().toDateString();if(state.lastStudyDate!==today){var y=new Date();y.setDate(y.getDate()-1);state.streak=(state.lastStudyDate===y.toDateString())?(state.streak||0)+1:1;state.lastStudyDate=today;state.todayCount=0;}state.todayCount=(state.todayCount||0)+1;saveState();updateHeaderStats();if(state.todayCount>=state.dailyGoal)awardBadge("daily","Дневная цель");}
+function ensureSrs(term){if(!state.srs[term])state.srs[term]={interval:0,ease:2.5,due:Date.now(),reps:0};return state.srs[term];}
+function gradeSrs(term,grade){var c=ensureSrs(term);c.reps++;if(grade===1){c.interval=.1;c.ease=Math.max(1.3,c.ease-.2);state.difficult[term]=true;}else if(grade===2){c.interval=Math.max(1,c.interval*1.2);c.ease=Math.max(1.3,c.ease-.05);}else{if(c.reps===1)c.interval=1;else if(c.reps===2)c.interval=3;else c.interval=Math.round(c.interval*c.ease);c.ease=Math.min(2.8,c.ease+.05);delete state.difficult[term];}c.due=Date.now()+c.interval*86400000;saveState();updateDueBar();}
+function getPhoto(term){return (state.photos&&state.photos[term])||null;}
+function setPhoto(term,dataUrl){if(!state.photos)state.photos={};if(dataUrl)state.photos[term]=dataUrl;else delete state.photos[term];saveState();}
+function getAllTerms(){return WORDS.concat((state.customWords||[]).map(function(w){return Object.assign({},w,{custom:true});}));}
+function addCustomWord(word){if(!state.customWords)state.customWords=[];if(getAllTerms().some(function(w){return w.term.toLowerCase()===word.term.toLowerCase();}))return{ok:false,msg:"Такое слово уже есть"};state.customWords.push(word);saveState();return{ok:true};}
+function removeCustomWord(term){state.customWords=(state.customWords||[]).filter(function(w){return w.term!==term;});setPhoto(term,null);saveState();}
+function getDueTerms(){var now=Date.now(),due=[];getAllTerms().forEach(function(w){var c=state.srs[w.term];if(c&&c.due<=now)due.push(w);else if(!c&&state.learned[w.term])due.push(w);});return due;}
+function totalWords(){return getAllTerms().length;}function learnedCount(){return Object.keys(state.learned).length;}
+function youglishUrl(term){return "https://youglish.com/pronounce/"+encodeURIComponent(term)+"/english";}
+function openYouGlish(term){window.open(youglishUrl(term),"_blank","noopener");}
+
+function $(id){return document.getElementById(id);}
+function show(el){if(el)el.classList.remove("hidden");}function hide(el){if(el)el.classList.add("hidden");}
+function setTitle(t){var el=$("headerTitle");if(el)el.textContent=t;}
+function updateHeaderStats(){var a=$("statLearned"),b=$("statStreak"),lv=$("statLevel"),xf=$("xpFill");if(a)a.textContent=learnedCount()+"/"+totalWords();if(b)b.textContent="🔥"+(state.streak||0);var xp=xpProgress();if(lv)lv.textContent="Lv."+xp.lvl;if(xf)xf.style.width=xp.pct+"%";}
+function updateDueBar(){var due=getDueTerms(),bar=$("dueBar");if(!bar)return;if(due.length){bar.classList.add("visible");var t=$("dueText");if(t)t.textContent="Повторить сегодня: "+due.length;}else bar.classList.remove("visible");}
+function openMenu(){$("sideMenu").classList.add("open");$("overlay").classList.add("open");}
+function closeMenu(){$("sideMenu").classList.remove("open");$("overlay").classList.remove("open");}
+function openSheet(html){$("sheetContent").innerHTML=html;$("sheetOverlay").classList.add("open");$("termSheet").classList.add("open");}
+function closeSheet(){$("sheetOverlay").classList.remove("open");$("termSheet").classList.remove("open");}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");}
+function speakText(text){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(String(text));u.lang="en-GB";u.rate=.9;window.speechSynthesis.speak(u);}
+function setActiveNav(id){document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.remove("active");});var btn=$(id);if(btn)btn.classList.add("active");}
+function continueBtn(onNext){return '<div class="continue-wrap"><button class="btn btn-lg" type="button" id="btnContinue">Далее →</button></div>';}
+function bindContinue(fn){var b=$("btnContinue");if(b)b.onclick=fn;}
+
+function goHome(){inMode=false;hide($("btnBack"));show($("btnMenu"));setTitle(LESSON_TITLE);hide($("viewMode"));show($("viewStudy"));setActiveNav("navHome");renderStudy();}
+function handleBack(){if(inMode)goHome();}
+
+function renderStudy(){
+  var words=getAllTerms(),cont=$("viewStudy");
+  if(!cont)return;
+  var xp=xpProgress();
+  var badgeHtml="";
+  if(state.badges)Object.keys(state.badges).forEach(function(k){badgeHtml+='<span class="mini-badge">'+esc(state.badges[k])+'</span>';});
+  var dailyDone=state.dailyDone===new Date().toDateString();
+  var html='<div class="level-card"><div class="lvl">'+xp.lvl+'</div><div class="meta"><div style="font-weight:800">Уровень '+xp.lvl+'</div><div>'+(state.points||0)+' XP · до след.: '+(xp.next-(state.points||0))+'</div><div class="badge-row">'+badgeHtml+'</div></div></div>';
+  html+='<div class="daily-box"><h3>🎯 Цель на сегодня</h3><p>'+(state.todayCount||0)+' / '+state.dailyGoal+' действий · серия 🔥 '+(state.streak||0)+(dailyDone?" · ✅ выполнено!":"")+'</p></div>';
+  html+='<div class="welcome"><h2>'+esc(LESSON_TITLE)+'</h2><p>Нажми на слово. Слушай носителей на YouGlish. Добавляй свои фото. Темп — твой: кнопка «Далее».</p></div>';
+  html+='<div class="study-actions"><button class="btn" type="button" id="btnPracticeAll">🎯 Практика</button><button class="btn btn-outline" type="button" id="btnFlashThis">🃏 Карточки</button></div>';
+  html+='<div class="study-actions"><button class="btn btn-outline" type="button" id="btnMatchThis">🔗 Пары</button><button class="btn btn-outline" type="button" id="btnQuizThis">❓ Тест</button></div>';
+  html+='<div class="study-actions"><button class="btn btn-outline" type="button" id="btnGapsThis">📝 Пропуски</button><button class="btn btn-outline" type="button" id="btnOrderThis">🔀 Порядок</button></div>';
+  html+='<div class="study-actions"><button class="btn btn-outline" type="button" id="btnSpellThis">✍️ Правописание</button><button class="btn btn-outline" type="button" id="btnStoryThis">📖 История</button></div>';
+  html+='<div class="study-actions"><button class="btn btn-outline" type="button" id="btnAddWord" style="flex:1">➕ Своё слово</button></div>';
+  var groups=[],groupMap={},custom=words.filter(function(w){return w.custom||w.note==="своё слово";}),rest=words.filter(function(w){return !(w.custom||w.note==="своё слово");});
+  rest.forEach(function(w){var key=w.note||"Слова";if(!groupMap[key]){groupMap[key]=[];groups.push(key);}groupMap[key].push(w);});
+  function chipHtml(w){var cls=state.learned[w.term]?" learned":(state.difficult[w.term]?" difficult":"");if(w.custom||w.note==="своё слово")cls+=" custom";var photo=getPhoto(w.term);var img=photo?'<img class="chip-img" src="'+photo+'" alt="">':'<span class="emoji">'+(w.emoji||"📝")+'</span>';return '<div class="word-chip'+cls+'" data-term="'+esc(w.term)+'">'+img+'<span class="term">'+esc(w.term)+'</span></div>';}
+  function titleCase(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+  groups.forEach(function(key){html+='<div class="section-title">'+esc(titleCase(key))+'</div><div class="word-grid">';groupMap[key].forEach(function(w){html+=chipHtml(w);});html+='</div>';});
+  if(custom.length){html+='<div class="section-title">Мои слова</div><div class="word-grid">';custom.forEach(function(w){html+=chipHtml(w);});html+='</div>';}
+  cont.innerHTML=html;
+  cont.querySelectorAll(".word-chip").forEach(function(el){el.onclick=function(){var t=el.getAttribute("data-term");var w=words.find(function(x){return x.term===t;});if(w)openTermPractice(w);};});
+  function bind(id,mode){var b=$(id);if(b)b.onclick=function(){state.modeSet=words.slice();startMode(mode);};}
+  bind("btnPracticeAll","practiceHub");bind("btnFlashThis","flashcards");bind("btnMatchThis","match");bind("btnQuizThis","quiz");
+  bind("btnGapsThis","gaps");bind("btnOrderThis","order");bind("btnSpellThis","spelling");bind("btnStoryThis","story");
+  $("btnAddWord").onclick=openAddWordForm;
+}
+
+function openTermPractice(word){
+  var isL=!!state.learned[word.term],isD=!!state.difficult[word.term],isCustom=!!(word.custom||word.note==="своё слово");
+  var photo=getPhoto(word.term);
+  var html='<div class="term-big">'+esc(word.term)+'</div><div class="phonetic">'+esc(word.phonetic||"")+'</div>';
+  if(photo)html+='<img class="word-photo" src="'+photo+'" alt="">';
+  else html+='<div class="illustration">'+(word.emoji||"📝")+'</div>';
+  html+='<div class="meaning-box"><strong>Значение:</strong> '+esc(word.definition)+(word.note?' <span style="color:var(--muted);font-size:.82rem">('+esc(word.note)+')</span>':'')+'</div>';
+  html+='<div class="example-box">«'+esc(word.example)+'»</div>';
+  html+='<div class="btn-row"><button class="btn" type="button" id="btnHear">🔊 TTS</button><button class="btn btn-youglish" type="button" id="btnYG">🌍 YouGlish</button></div>';
+  html+='<div class="btn-row"><button class="btn '+(isL?"btn-success":"btn-outline")+'" type="button" id="btnLearned">'+(isL?"✓ Выучено":"Отметить выученным")+'</button><button class="btn '+(isD?"btn-warning":"btn-outline")+'" type="button" id="btnDifficult">'+(isD?"⚠️ Сложное":"Сложное")+'</button></div>';
+  html+='<div class="btn-row"><label class="btn btn-outline" style="cursor:pointer">📷 Фото<input type="file" id="btnPhoto" accept="image/*" capture="environment" style="display:none"></label>';
+  if(photo)html+='<button class="btn btn-ghost" type="button" id="btnDelPhoto">Убрать фото</button>';
+  html+='</div>';
+  if(isCustom)html+='<div class="btn-row"><button class="btn btn-danger" type="button" id="btnDelCustom">🗑 Удалить слово</button></div>';
+  html+='<div class="tabs" id="practiceTabs"><button class="tab active" type="button" data-tab="mc">Выбор</button><button class="tab" type="button" data-tab="spell">Написание</button><button class="tab" type="button" data-tab="sentence">Предложение</button><button class="tab" type="button" data-tab="speak">Сказать</button></div>';
+  html+='<div id="tabMc" class="tab-content active"></div><div id="tabSpell" class="tab-content"></div><div id="tabSentence" class="tab-content"></div><div id="tabSpeak" class="tab-content"></div>';
+  openSheet(html);
+  $("btnHear").onclick=function(){speakText(word.term);};
+  $("btnYG").onclick=function(){openYouGlish(word.term);};
+  $("btnLearned").onclick=function(){if(state.learned[word.term])delete state.learned[word.term];else{state.learned[word.term]=true;ensureSrs(word.term);markStudiedToday();addPoints(5);}saveState();updateHeaderStats();openTermPractice(word);renderStudy();};
+  $("btnDifficult").onclick=function(){if(state.difficult[word.term])delete state.difficult[word.term];else state.difficult[word.term]=true;saveState();openTermPractice(word);renderStudy();};
+  var pf=$("btnPhoto");
+  if(pf)pf.onchange=function(e){var f=e.target.files&&e.target.files[0];if(!f)return;if(f.size>600000){alert("Слишком большое фото (макс ~600 КБ). Выбери поменьше.");return;}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var c=document.createElement("canvas");var max=480;var w=img.width,h=img.height;if(w>max||h>max){var r=Math.min(max/w,max/h);w=Math.round(w*r);h=Math.round(h*r);}c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);setPhoto(word.term,c.toDataURL("image/jpeg",0.7));openTermPractice(word);renderStudy();toast("📷 Фото сохранено");};img.src=reader.result;};reader.readAsDataURL(f);};
+  var dp=$("btnDelPhoto");if(dp)dp.onclick=function(){setPhoto(word.term,null);openTermPractice(word);renderStudy();};
+  var bdel=$("btnDelCustom");if(bdel)bdel.onclick=function(){if(!confirm("Удалить «"+word.term+"»?"))return;removeCustomWord(word.term);delete state.learned[word.term];delete state.difficult[word.term];if(state.srs)delete state.srs[word.term];saveState();closeSheet();renderStudy();updateHeaderStats();};
+  setupTabs(word);
+}
+function setupTabs(word){document.querySelectorAll("#practiceTabs .tab").forEach(function(t){t.onclick=function(){document.querySelectorAll("#practiceTabs .tab").forEach(function(x){x.classList.remove("active");});t.classList.add("active");document.querySelectorAll("#sheetContent .tab-content").forEach(function(c){c.classList.remove("active");});var map={mc:"tabMc",spell:"tabSpell",sentence:"tabSentence",speak:"tabSpeak"};var id=map[t.getAttribute("data-tab")];if($(id))$(id).classList.add("active");var tab=t.getAttribute("data-tab");if(tab==="mc")renderMc(word);else if(tab==="spell")renderSpell(word);else if(tab==="sentence")renderSentence(word);else if(tab==="speak")renderSpeak(word);};});renderMc(word);}
+function renderMc(word){var cont=$("tabMc");if(!cont)return;var all=getAllTerms().map(function(w){return w.definition;}),opts=[word.definition],g=0;while(opts.length<4&&g++<40){var r=all[Math.floor(Math.random()*all.length)];if(r&&opts.indexOf(r)<0)opts.push(r);}opts=shuffle(opts);var html='<p class="hint">Выбери правильный перевод:</p>';opts.forEach(function(o){html+='<button class="option" type="button" data-val="'+esc(o)+'">'+esc(o)+'</button>';});html+='<div class="feedback" id="mcFb"></div>';cont.innerHTML=html;cont.querySelectorAll(".option").forEach(function(btn){btn.onclick=function(){var ok=btn.getAttribute("data-val")===word.definition;cont.querySelectorAll(".option").forEach(function(b){b.disabled=true;if(b.getAttribute("data-val")===word.definition)b.classList.add("correct");else if(b===btn&&!ok)b.classList.add("wrong");});var fb=$("mcFb");if(fb){fb.className="feedback show "+(ok?"ok":"err");fb.innerHTML=ok?"✓ Верно! 🎉":"✗ Правильно: <strong>"+esc(word.definition)+"</strong>";}if(ok){addPoints(2,{combo:true});markStudiedToday();}else state.combo=0;};});}
+function renderSpell(word){var cont=$("tabSpell");if(!cont)return;cont.innerHTML='<p class="hint">Напиши слово или фразу</p><div class="btn-row"><button class="btn btn-outline" type="button" id="spellHear">🔊</button><button class="btn btn-youglish" type="button" id="spellYG">🌍 YouGlish</button></div><div class="input-wrap"><input id="spellInput" type="text" placeholder="Пиши здесь..." autocomplete="off" spellcheck="false"></div><button class="btn btn-lg" type="button" id="spellCheck">Проверить</button><div class="feedback" id="spellFb"></div>';$("spellHear").onclick=function(){speakText(word.term);};$("spellYG").onclick=function(){openYouGlish(word.term);};$("spellCheck").onclick=function(){var v=($("spellInput").value||"").trim().toLowerCase().replace(/\s+/g," ");var ok=v===word.term.toLowerCase();var fb=$("spellFb");fb.className="feedback show "+(ok?"ok":"err");fb.innerHTML=ok?"✓ Отлично!":"✗ Правильно: <strong>"+esc(word.term)+"</strong>";if(ok){addPoints(3,{combo:true});markStudiedToday();}else state.combo=0;};}
+function renderSentence(word){var cont=$("tabSentence");if(!cont)return;cont.innerHTML='<p class="hint">Напиши своё предложение со словом <strong>«'+esc(word.term)+'»</strong></p><div class="example-box" style="margin-bottom:.7rem"><div style="font-size:.75rem;color:var(--muted);margin-bottom:.15rem;font-style:normal;font-weight:700">Пример:</div>«'+esc(word.example)+'»</div><div class="input-wrap"><textarea id="sentInput" rows="3" placeholder="Write your sentence in English..."></textarea></div><button class="btn btn-lg" type="button" id="sentCheck">Проверить</button><div class="feedback" id="sentFb"></div>';$("sentCheck").onclick=function(){var v=($("sentInput").value||"").trim();var ok=v.toLowerCase().indexOf(word.term.toLowerCase())>=0;var fb=$("sentFb");if(v.length<5){fb.className="feedback show err";fb.textContent="Напиши чуть длиннее 🙂";return;}fb.className="feedback show "+(ok?"ok":"err");fb.innerHTML=ok?("✓ Круто! Ты использовал(а) «"+esc(word.term)+"».<br><span style=\"font-size:.85rem\">Пример: «"+esc(word.example)+"»</span>"):("✗ В предложении нет «"+esc(word.term)+"».<br>Пример: «"+esc(word.example)+"»");if(ok){addPoints(4,{combo:true});markStudiedToday();}else state.combo=0;};}
+function renderSpeak(word){var cont=$("tabSpeak");if(!cont)return;cont.innerHTML='<p class="hint">Произнеси вслух · или послушай носителей</p><div class="btn-row"><button class="btn btn-youglish" type="button" id="spYG">🌍 YouGlish — носители</button></div><button class="btn btn-lg" type="button" id="btnMic">🎤 Говори</button><div class="mic-status" id="micSt"></div><div class="feedback" id="speakFb"></div>';$("spYG").onclick=function(){openYouGlish(word.term);};$("btnMic").onclick=function(){startRec(word.term,"micSt","speakFb");};}
+function startRec(target,statusId,fbId){var status=$(statusId),fb=$(fbId),SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){if(status)status.textContent="Не поддерживается — открой YouGlish";return;}try{var rec=new SR();rec.lang="en-US";rec.interimResults=false;if(status)status.textContent="Слушаю... 🎤";if(fb){fb.className="feedback";fb.textContent="";}rec.onresult=function(e){var said=(e.results[0][0].transcript||"").toLowerCase().trim();if(status)status.textContent="«"+said+"»";var norm=function(s){return s.replace(/[^\w\s]/g,"").replace(/\s+/g," ").trim();};var ok=norm(said)===norm(target.toLowerCase())||norm(said).indexOf(norm(target.toLowerCase()))>=0;if(fb){fb.className="feedback show "+(ok?"ok":"err");fb.innerHTML=ok?"✓ Звучит хорошо!":"✗ Цель: <strong>"+esc(target)+"</strong>";}if(ok){addPoints(5,{combo:true});markStudiedToday();}else state.combo=0;};rec.onerror=function(e){if(status)status.textContent=e.error==="not-allowed"?"Разреши микрофон":"Ошибка: "+e.error;};rec.start();}catch(err){if(status)status.textContent="Нужен доступ к микрофону";}}
+
+function startMode(mode){closeMenu();closeSheet();hide($("viewStudy"));show($("viewMode"));show($("btnBack"));hide($("btnMenu"));inMode=true;var set=(state.modeSet&&state.modeSet.length)?state.modeSet:getAllTerms();
+if(mode==="practiceHub"){setActiveNav("navPractice");runPracticeHub(set);}
+else if(mode==="flashcards"){setActiveNav("navPractice");runFlash(set);}
+else if(mode==="match"){setActiveNav("navPractice");runMatch(set);}
+else if(mode==="quiz"){setActiveNav("navPractice");runQuiz(set);}
+else if(mode==="gaps"){setActiveNav("navPractice");runGaps(set);}
+else if(mode==="order"){setActiveNav("navPractice");runOrder(set);}
+else if(mode==="spelling"){setActiveNav("navPractice");runSpell(set);}
+else if(mode==="story"){setActiveNav("navPractice");runStory(set);}
+else if(mode==="sentences"){setActiveNav("navPractice");runSentences(set);}
+else if(mode==="pronunciation"){setActiveNav("navPractice");runPron(set);}
+else if(mode==="difficult"){setActiveNav("navPractice");runDiff();}
+else if(mode==="progress"){setActiveNav("navProgress");runProg();}
+else if(mode==="review"){setActiveNav("navReview");runReview();}
+}
+
+function runPracticeHub(words){setTitle("Практика");var cont=$("viewMode");cont.innerHTML='<p class="mode-hint">Выбери упражнение · '+words.length+' слов · твой темп</p>'+
+'<div class="card" style="cursor:pointer" id="hubFlash"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">🃏</span><div><b>Карточки</b><div style="font-size:.78rem;color:var(--muted)">Переворачивай в своём темпе</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubMatch"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">🔗</span><div><b>Соедини пары</b><div style="font-size:.78rem;color:var(--muted)">Слово ↔ перевод</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubQuiz"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">❓</span><div><b>Тест</b><div style="font-size:.78rem;color:var(--muted)">Выбор перевода · кнопка «Далее»</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubGaps"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">📝</span><div><b>Пропуски</b><div style="font-size:.78rem;color:var(--muted)">Вставь слово в предложение</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubOrder"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">🔀</span><div><b>Порядок слов</b><div style="font-size:.78rem;color:var(--muted)">Собери предложение</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubSpell"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">✍️</span><div><b>Правописание</b><div style="font-size:.78rem;color:var(--muted)">Напиши слово</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubStory"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">📖</span><div><b>История</b><div style="font-size:.78rem;color:var(--muted)">Новое! Напиши мини-историю из 3 слов</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubSent"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">✏️</span><div><b>Предложения</b><div style="font-size:.78rem;color:var(--muted)">Своё предложение на слово</div></div></div></div>'+
+'<div class="card" style="cursor:pointer" id="hubPron"><div style="display:flex;gap:.8rem;align-items:center"><span style="font-size:1.6rem">🎤</span><div><b>Произношение</b><div style="font-size:.78rem;color:var(--muted)">Говори или YouGlish</div></div></div></div>';
+function go(m){state.modeSet=words.slice();startMode(m);}
+["Flash","Match","Quiz","Gaps","Order","Spell","Story","Sent","Pron"].forEach(function(n){var map={Flash:"flashcards",Match:"match",Quiz:"quiz",Gaps:"gaps",Order:"order",Spell:"spelling",Story:"story",Sent:"sentences",Pron:"pronunciation"};$("hub"+n).onclick=function(){go(map[n]);};});
+}
+
+function runFlash(words){setTitle("Карточки");var cont=$("viewMode");if(!words.length)return;var idx=0;function r(){var w=words[idx];var photo=getPhoto(w.term);cont.innerHTML='<p class="mode-hint">Нажми карточку · листай когда готов</p><div class="flashcard" id="fc"><div class="flashcard-inner"><div class="flash-face">'+(photo?'<img class="word-photo" style="max-height:90px" src="'+photo+'">':'<div style="font-size:2.5rem">'+w.emoji+'</div>')+'<div style="font-size:1.25rem;font-weight:800;margin-top:.4rem">'+esc(w.term)+'</div><div class="phonetic">'+esc(w.phonetic||"")+'</div><p class="hint" style="margin-top:.8rem">👆 Нажми</p></div><div class="flash-face flash-back"><div style="font-size:1.1rem;font-weight:700">'+esc(w.definition)+'</div><div style="font-size:.88rem;color:var(--muted);margin-top:.45rem;font-style:italic">«'+esc(w.example)+'»</div></div></div></div><div class="btn-row"><button class="btn btn-outline" type="button" id="fp">←</button><button class="btn" type="button" id="fh">🔊</button><button class="btn btn-youglish" type="button" id="fyg">🌍</button><button class="btn btn-outline" type="button" id="fn">→</button></div><p style="text-align:center;color:var(--muted);font-size:.85rem;font-weight:600">'+(idx+1)+' / '+words.length+'</p>';$("fc").onclick=function(){$("fc").classList.toggle("flipped");};$("fh").onclick=function(e){e.stopPropagation();speakText(w.term);};$("fyg").onclick=function(e){e.stopPropagation();openYouGlish(w.term);};$("fp").onclick=function(){idx=(idx-1+words.length)%words.length;r();};$("fn").onclick=function(){idx=(idx+1)%words.length;r();};}r();}
+
+function runMatch(words){setTitle("Соедини");var cont=$("viewMode");var sample=shuffle(words).slice(0,Math.min(6,words.length)),items=[];sample.forEach(function(w){items.push({type:"t",text:w.term,id:w.term});items.push({type:"d",text:w.definition,id:w.term});});items=shuffle(items);var sel=null,matched=0;cont.innerHTML='<p class="mode-hint">Найди пары · без таймера</p><div class="match-grid" id="mg"></div><p style="text-align:center;margin-top:.8rem;font-weight:700" id="ms">0 / '+sample.length+'</p>';var grid=$("mg");items.forEach(function(it){var el=document.createElement("div");el.className="match-item";el.textContent=it.text;el.dataset.id=it.id;el.dataset.type=it.type;el.onclick=function(){if(el.classList.contains("matched"))return;if(!sel){sel=el;el.classList.add("selected");}else if(sel===el){sel.classList.remove("selected");sel=null;}else{if(sel.dataset.id===el.dataset.id&&sel.dataset.type!==el.dataset.type){sel.classList.add("matched");el.classList.add("matched");sel.classList.remove("selected");sel=null;matched++;$("ms").textContent=matched+" / "+sample.length;if(matched===sample.length){addPoints(12,{combo:true});markStudiedToday();confettiBurst();toast("🎉 Все пары найдены!");}}else{sel.classList.remove("selected");sel=null;state.combo=0;}}};grid.appendChild(el);});}
+
+function showResultThenContinue(cont,ok,msgOk,msgErr,onNext){var html='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?msgOk:msgErr)+'</div>'+continueBtn();cont.insertAdjacentHTML("beforeend",html);bindContinue(onNext);}
+
+function runQuiz(words){setTitle("Тест");var cont=$("viewMode");if(!words.length)return;var list=shuffle(words),idx=0,score=0;function next(){if(idx>=list.length){if(score===list.length)confettiBurst();cont.innerHTML='<div class="empty-state"><div class="big">🏆</div><p style="font-size:1.15rem;font-weight:800">'+score+' из '+list.length+'</p><p style="margin-top:.3rem">'+((score/list.length)>=.7?"Отличный результат! 🎉":"Ещё раз — станет лучше")+'</p><button class="btn btn-lg" type="button" id="qa" style="margin-top:1rem">Ещё раз</button><button class="btn btn-ghost btn-lg" type="button" id="qh" style="margin-top:.35rem">К словам</button></div>';$("qa").onclick=function(){runQuiz(words);};$("qh").onclick=goHome;addPoints(score*2);markStudiedToday();updateHeaderStats();return;}var w=list[idx],all=getAllTerms().map(function(x){return x.definition;}),opts=[w.definition],g=0;while(opts.length<4&&g++<40){var r=all[Math.floor(Math.random()*all.length)];if(r&&opts.indexOf(r)<0)opts.push(r);}opts=shuffle(opts);var comboHtml=(state.combo||0)>=2?'<span class="combo-pill">Комбо x'+state.combo+'</span>':'';var html='<p class="mode-hint">'+(idx+1)+' / '+list.length+comboHtml+'</p><div class="term-big" style="margin:.8rem 0">'+esc(w.term)+'</div><div class="illustration">'+w.emoji+'</div>';opts.forEach(function(o){html+='<button class="option" type="button" data-val="'+esc(o)+'">'+esc(o)+'</button>';});html+='<div id="qExtra"></div>';cont.innerHTML=html;cont.querySelectorAll(".option").forEach(function(btn){btn.onclick=function(){var ok=btn.getAttribute("data-val")===w.definition;cont.querySelectorAll(".option").forEach(function(b){b.disabled=true;if(b.getAttribute("data-val")===w.definition)b.classList.add("correct");else if(b===btn&&!ok)b.classList.add("wrong");});if(ok){score++;addPoints(2,{combo:true});}else state.combo=0;var extra=$("qExtra");extra.innerHTML='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?"✓ Верно!":"✗ Правильно: <strong>"+esc(w.definition)+"</strong>")+'</div>'+continueBtn();bindContinue(function(){idx++;next();});};});}next();}
+
+function runGaps(words){setTitle("Пропуски");var cont=$("viewMode");var list=shuffle(words.filter(function(w){return w.example&&w.example.toLowerCase().indexOf(w.term.toLowerCase())>=0;}));if(list.length<2)list=shuffle(words.slice());var idx=0,score=0;function next(){if(idx>=list.length){cont.innerHTML='<div class="empty-state"><div class="big">📝</div><p style="font-size:1.1rem;font-weight:800">'+score+' из '+list.length+'</p><button class="btn btn-lg" type="button" id="ga" style="margin-top:1rem">Ещё раз</button></div>';$("ga").onclick=function(){runGaps(words);};addPoints(score*2);markStudiedToday();return;}var w=list[idx];var ex=w.example||("I use "+w.term+".");var re=new RegExp(w.term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i");var gapped=ex.replace(re,'<span class="gap-blank">______</span>');if(gapped===ex)gapped=ex+' <span class="gap-blank">______</span>';var distractors=[],pool=shuffle(words.filter(function(x){return x.term!==w.term;}));for(var i=0;i<pool.length&&distractors.length<3;i++)distractors.push(pool[i].term);while(distractors.length<3)distractors.push("word"+(distractors.length+1));var opts=shuffle([w.term].concat(distractors.slice(0,3)));var html='<p class="mode-hint">'+(idx+1)+' / '+list.length+' · Вставь слово</p><div class="illustration">'+w.emoji+'</div><div class="gap-sentence">'+gapped+'</div><p class="hint" style="text-align:center">Перевод: '+esc(w.definition)+'</p><div class="gap-options">';opts.forEach(function(o){html+='<button class="option" type="button" data-val="'+esc(o)+'">'+esc(o)+'</button>';});html+='</div><div id="gExtra"></div>';cont.innerHTML=html;cont.querySelectorAll(".option").forEach(function(btn){btn.onclick=function(){var ok=btn.getAttribute("data-val").toLowerCase()===w.term.toLowerCase();cont.querySelectorAll(".option").forEach(function(b){b.disabled=true;if(b.getAttribute("data-val").toLowerCase()===w.term.toLowerCase())b.classList.add("correct");else if(b===btn&&!ok)b.classList.add("wrong");});if(ok){score++;addPoints(2,{combo:true});}else state.combo=0;$("gExtra").innerHTML='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?"✓ Верно!":"✗ Правильно: <strong>"+esc(w.term)+"</strong>")+'</div>'+continueBtn();bindContinue(function(){idx++;next();});};});}next();}
+
+function runOrder(words){setTitle("Порядок слов");var cont=$("viewMode");var list=shuffle(words.filter(function(w){return w.example&&w.example.split(/\s+/).length>=3&&w.example.split(/\s+/).length<=10;}));if(list.length<2)list=shuffle(words.filter(function(w){return w.example;}).slice());if(!list.length){cont.innerHTML='<div class="empty-state"><div class="big">📭</div><p>Нет подходящих предложений</p></div>';return;}var idx=0,score=0;function next(){if(idx>=list.length){cont.innerHTML='<div class="empty-state"><div class="big">🔀</div><p style="font-size:1.1rem;font-weight:800">'+score+' из '+list.length+'</p><button class="btn btn-lg" type="button" id="oa" style="margin-top:1rem">Ещё раз</button></div>';$("oa").onclick=function(){runOrder(words);};addPoints(score*3);markStudiedToday();return;}var w=list[idx];var sentence=w.example.replace(/[.?!,;:]+$/g,"").trim();var tokens=sentence.split(/\s+/);var shuffled=shuffle(tokens.slice());var same=true;for(var i=0;i<tokens.length;i++)if(tokens[i]!==shuffled[i]){same=false;break;}if(same&&tokens.length>1)shuffled=shuffle(tokens.slice());var picked=[];cont.innerHTML='<p class="mode-hint">'+(idx+1)+' / '+list.length+' · Собери предложение</p><div class="illustration">'+w.emoji+'</div><p class="hint" style="text-align:center"><strong>'+esc(w.term)+'</strong> · '+esc(w.definition)+'</p><div class="order-slot" id="orderSlot"><span style="color:var(--muted);font-size:.82rem">Нажимай слова →</span></div><div class="order-bank" id="orderBank"></div><button class="btn btn-lg" type="button" id="orderCheck">Проверить</button><button class="btn btn-ghost btn-lg" type="button" id="orderReset" style="margin-top:.3rem">Сбросить</button><div id="oExtra"></div>';var bank=$("orderBank");shuffled.forEach(function(tok){var chip=document.createElement("button");chip.type="button";chip.className="order-chip";chip.textContent=tok;chip.dataset.tok=tok;chip.onclick=function(){if(chip.classList.contains("used"))return;chip.classList.add("used");picked.push(tok);renderSlot();};bank.appendChild(chip);});function renderSlot(){var slot=$("orderSlot");if(!picked.length){slot.innerHTML='<span style="color:var(--muted);font-size:.82rem">Нажимай слова →</span>';return;}slot.innerHTML="";picked.forEach(function(t,pi){var c=document.createElement("button");c.type="button";c.className="order-chip in-slot";c.textContent=t;c.onclick=function(){picked.splice(pi,1);var chips=bank.querySelectorAll(".order-chip");for(var i=0;i<chips.length;i++){if(chips[i].dataset.tok===t&&chips[i].classList.contains("used")){chips[i].classList.remove("used");break;}}renderSlot();};slot.appendChild(c);});}$("orderReset").onclick=function(){picked=[];bank.querySelectorAll(".order-chip").forEach(function(c){c.classList.remove("used");});renderSlot();$("oExtra").innerHTML="";};$("orderCheck").onclick=function(){var ok=picked.length===tokens.length;if(ok)for(var i=0;i<tokens.length;i++)if(picked[i].toLowerCase()!==tokens[i].toLowerCase()){ok=false;break;}if(ok){score++;addPoints(3,{combo:true});}else state.combo=0;$("oExtra").innerHTML='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?"✓ Верно!":"✗ Правильно: <strong>"+esc(sentence)+"</strong>")+'</div>'+continueBtn();bindContinue(function(){idx++;next();});};}next();}
+
+function runSpell(words){setTitle("Правописание");var cont=$("viewMode");var list=shuffle(words),idx=0,score=0;function next(){if(idx>=list.length){cont.innerHTML='<div class="empty-state"><div class="big">✍️</div><p style="font-size:1.1rem;font-weight:800">'+score+' / '+list.length+'</p><button class="btn btn-lg" type="button" id="sa" style="margin-top:1rem">Ещё раз</button></div>';$("sa").onclick=function(){runSpell(words);};return;}var w=list[idx];cont.innerHTML='<p class="mode-hint">'+(idx+1)+' / '+list.length+' · Напиши по-английски</p><div class="illustration">'+w.emoji+'</div><p style="text-align:center;margin-bottom:.8rem;font-weight:650">'+esc(w.definition)+'</p><div class="btn-row"><button class="btn btn-outline" type="button" id="sh">🔊</button><button class="btn btn-youglish" type="button" id="syg">🌍 YouGlish</button></div><div class="input-wrap"><input id="si" type="text" placeholder="Пиши здесь..." autocomplete="off" spellcheck="false"></div><button class="btn btn-lg" type="button" id="sc">Проверить</button><div id="sExtra"></div>';$("sh").onclick=function(){speakText(w.term);};$("syg").onclick=function(){openYouGlish(w.term);};$("sc").onclick=function(){var v=($("si").value||"").trim().toLowerCase().replace(/\s+/g," ");var ok=v===w.term.toLowerCase();if(ok){score++;addPoints(3,{combo:true});}else state.combo=0;$("sExtra").innerHTML='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?"✓ Верно!":"✗ Правильно: <strong>"+esc(w.term)+"</strong>")+'</div>'+continueBtn();bindContinue(function(){idx++;next();});};}next();}
+
+function runStory(words){setTitle("История");var cont=$("viewMode");if(words.length<3){cont.innerHTML='<div class="empty-state"><div class="big">📖</div><p>Нужно минимум 3 слова</p></div>';return;}var picks=shuffle(words).slice(0,3);var tags=picks.map(function(w){return '<span class="story-tag">'+esc(w.term)+'</span>';}).join("");cont.innerHTML='<p class="mode-hint">Напиши короткую историю, используя ВСЕ 3 слова</p><div class="story-words">'+tags+'</div><div class="card" style="font-size:.85rem;color:var(--muted)">'+picks.map(function(w){return '<div style="margin:.25rem 0"><b>'+esc(w.term)+'</b> — '+esc(w.definition)+'</div>';}).join("")+'</div><div class="input-wrap"><textarea id="storyInput" rows="5" placeholder="Once upon a time..."></textarea></div><button class="btn btn-lg" type="button" id="storyCheck">Проверить историю</button><button class="btn btn-ghost btn-lg" type="button" id="storyNew" style="margin-top:.35rem">Другие 3 слова</button><div id="stExtra"></div>';$("storyNew").onclick=function(){runStory(words);};$("storyCheck").onclick=function(){var v=($("storyInput").value||"").trim();var low=v.toLowerCase();if(v.length<20){$("stExtra").innerHTML='<div class="feedback show err">Напиши историю подлиннее (хотя бы 20 символов)</div>';return;}var missing=[];picks.forEach(function(w){if(low.indexOf(w.term.toLowerCase())<0)missing.push(w.term);});var ok=!missing.length;if(ok){addPoints(15,{combo:true});markStudiedToday();confettiBurst();awardBadge("story","Писатель");}$("stExtra").innerHTML='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?"✓ Крутая история! +15 XP 🎉":"✗ Не хватает: <strong>"+esc(missing.join(", "))+"</strong>")+'</div>'+(ok?continueBtn():'<button class="btn btn-outline btn-lg" type="button" id="storyRetry" style="margin-top:.5rem">Попробовать снова</button>');if(ok)bindContinue(function(){runStory(words);});else{var rt=$("storyRetry");if(rt)rt.onclick=function(){$("stExtra").innerHTML="";};}};}
+
+function runSentences(words){setTitle("Предложения");var cont=$("viewMode");var list=shuffle(words),idx=0,score=0;function next(){if(idx>=list.length){cont.innerHTML='<div class="empty-state"><div class="big">✏️</div><p style="font-size:1.1rem;font-weight:800">'+score+' / '+list.length+'</p><button class="btn btn-lg" type="button" id="sa2" style="margin-top:1rem">Ещё раз</button></div>';$("sa2").onclick=function(){runSentences(words);};addPoints(score*3);markStudiedToday();return;}var w=list[idx];cont.innerHTML='<p class="mode-hint">'+(idx+1)+' / '+list.length+'</p><div class="illustration">'+w.emoji+'</div><div class="term-big">'+esc(w.term)+'</div><div class="meaning-box">'+esc(w.definition)+'</div><div class="example-box">«'+esc(w.example)+'»</div><div class="input-wrap"><textarea id="sm" rows="3" placeholder="Write your sentence..."></textarea></div><button class="btn btn-lg" type="button" id="sc2">Проверить</button><button class="btn btn-ghost btn-lg" type="button" id="sk2" style="margin-top:.3rem">Пропустить →</button><div id="smExtra"></div>';$("sk2").onclick=function(){idx++;next();};$("sc2").onclick=function(){var v=($("sm").value||"").trim();if(v.length<5){$("smExtra").innerHTML='<div class="feedback show err">Напиши чуть длиннее</div>';return;}var ok=v.toLowerCase().indexOf(w.term.toLowerCase())>=0;if(ok){score++;addPoints(3,{combo:true});}else state.combo=0;$("smExtra").innerHTML='<div class="feedback show '+(ok?"ok":"err")+'">'+(ok?"✓ Отлично!":"✗ Нужно слово «"+esc(w.term)+"». Пример: «"+esc(w.example)+"»")+'</div>'+continueBtn();bindContinue(function(){idx++;next();});};}next();}
+
+function runPron(words){setTitle("Произношение");var cont=$("viewMode");var list=shuffle(words).slice(0,Math.min(8,words.length)),idx=0;function next(){if(idx>=list.length){cont.innerHTML='<div class="empty-state"><div class="big">🎤</div><p>Готово!</p><button class="btn btn-lg" type="button" id="pa" style="margin-top:1rem">Ещё раз</button></div>';$("pa").onclick=function(){runPron(words);};return;}var w=list[idx];cont.innerHTML='<p class="mode-hint">'+(idx+1)+' / '+list.length+'</p><div class="term-big">'+esc(w.term)+'</div><div class="phonetic">'+esc(w.phonetic||"")+'</div><div class="illustration">'+w.emoji+'</div><div class="btn-row"><button class="btn btn-youglish" type="button" id="pyg">🌍 YouGlish — как говорят носители</button></div><button class="btn btn-lg" type="button" id="pm">🎤 Говори</button><div class="mic-status" id="pst"></div><div class="feedback" id="pfb"></div><button class="btn btn-ghost btn-lg" type="button" id="psk" style="margin-top:.4rem">Далее →</button>';$("pyg").onclick=function(){openYouGlish(w.term);};$("pm").onclick=function(){startRec(w.term,"pst","pfb");};$("psk").onclick=function(){idx++;next();};}next();}
+
+function runDiff(){setTitle("Сложные");var cont=$("viewMode");var diffs=getAllTerms().filter(function(w){return state.difficult[w.term];});state.modeSet=diffs;if(!diffs.length){cont.innerHTML='<div class="empty-state"><div class="big">👍</div><p>Нет сложных слов!</p></div>';return;}var html='<p class="mode-hint">'+diffs.length+' слов</p><div class="study-actions"><button class="btn" type="button" id="df">🃏</button><button class="btn btn-outline" type="button" id="dq">❓</button></div><div class="word-grid" id="dg"></div>';cont.innerHTML=html;var g=$("dg");diffs.forEach(function(w){var el=document.createElement("div");el.className="word-chip difficult";el.innerHTML='<span class="emoji">'+w.emoji+'</span><span class="term">'+esc(w.term)+'</span>';el.onclick=function(){openTermPractice(w);};g.appendChild(el);});$("df").onclick=function(){startMode("flashcards");};$("dq").onclick=function(){startMode("quiz");};}
+function runProg(){setTitle("Прогресс");var cont=$("viewMode");var total=totalWords(),learned=learnedCount(),pct=total?Math.round(learned/total*100):0;var xp=xpProgress();var badgeHtml="";if(state.badges)Object.keys(state.badges).forEach(function(k){badgeHtml+='<span class="mini-badge" style="background:var(--primary-soft);color:var(--primary)">'+esc(state.badges[k])+'</span> ';});cont.innerHTML='<div class="level-card"><div class="lvl">'+xp.lvl+'</div><div class="meta"><div style="font-weight:800">Уровень '+xp.lvl+'</div><div>'+(state.points||0)+' XP</div></div></div><div class="stat-grid"><div class="stat-box"><div class="num">'+learned+'</div><div class="lbl">Выучено</div></div><div class="stat-box"><div class="num">'+total+'</div><div class="lbl">Всего</div></div><div class="stat-box"><div class="num">'+(state.streak||0)+'</div><div class="lbl">Серия</div></div><div class="stat-box"><div class="num">'+(state.bestCombo||0)+'</div><div class="lbl">Лучшее комбо</div></div></div><div class="card"><p style="font-weight:700">Прогресс</p><div class="progress-bar"><span style="width:'+pct+'%"></span></div><p style="font-size:.8rem;color:var(--muted)">'+pct+'% · Сегодня: '+(state.todayCount||0)+'/'+state.dailyGoal+'</p></div><div class="card"><p style="font-weight:700;margin-bottom:.4rem">Бейджи</p><div>'+(badgeHtml||'<span style="color:var(--muted)">Пока нет — учись дальше!</span>')+'</div></div><div class="card"><p>К повторению: <strong>'+getDueTerms().length+'</strong></p><p style="margin-top:.25rem">Сложных: <strong>'+Object.keys(state.difficult).length+'</strong></p></div><button class="btn btn-outline btn-lg" type="button" id="br" style="margin-top:.8rem">Сбросить прогресс</button>';$("br").onclick=function(){if(confirm("Сбросить прогресс этого урока?")){state.learned={};state.difficult={};state.srs={};state.points=0;state.streak=0;state.todayCount=0;state.badges={};state.bestCombo=0;saveState();updateHeaderStats();updateDueBar();runProg();}};}
+function runReview(){setTitle("Повторение");var cont=$("viewMode");var due=getDueTerms();if(!due.length){cont.innerHTML='<div class="empty-state"><div class="big">✨</div><p>Нечего повторять!</p></div>';return;}var idx=0;function showCard(){if(idx>=due.length){cont.innerHTML='<div class="empty-state"><div class="big">🎉</div><p>Всё!</p></div>';updateDueBar();confettiBurst();return;}var w=due[idx];cont.innerHTML='<p class="mode-hint">'+(idx+1)+' / '+due.length+'</p><div class="term-big">'+esc(w.term)+'</div><div class="phonetic">'+esc(w.phonetic||"")+'</div><div class="illustration">'+w.emoji+'</div><div class="btn-row"><button class="btn btn-outline" type="button" id="rh">🔊</button><button class="btn btn-youglish" type="button" id="ryg">🌍</button><button class="btn btn-outline" type="button" id="rs">Показать</button></div><div id="rm" class="meaning-box hidden">'+esc(w.definition)+'<div class="example-box" style="margin-top:.4rem">«'+esc(w.example)+'»</div></div><p class="hint" style="margin-top:.9rem">Как вспомнил(а)?</p><div class="srs-grade"><button class="btn btn-danger" type="button" data-g="1">Сложно</button><button class="btn btn-warning" type="button" data-g="2">Средне</button><button class="btn btn-success" type="button" data-g="3">Легко</button></div>';$("rh").onclick=function(){speakText(w.term);};$("ryg").onclick=function(){openYouGlish(w.term);};$("rs").onclick=function(){$("rm").classList.remove("hidden");};cont.querySelectorAll("[data-g]").forEach(function(b){b.onclick=function(){var g=+b.getAttribute("data-g");gradeSrs(w.term,g);if(g>=2)state.learned[w.term]=true;markStudiedToday();saveState();idx++;showCard();};});}showCard();}
+
+function openAddWordForm(){var emojis=["📝","📘","⭐","🔥","💡","🎯","🗣️","✏️","🌟","📌","⚽","✨"];var emojiHtml=emojis.map(function(e,i){return '<button type="button" class="emoji-pick'+(i===0?' selected':'')+'" data-e="'+e+'">'+e+'</button>';}).join("");openSheet('<div class="term-big" style="font-size:1.1rem">➕ Новое слово</div><p class="hint">Сохранится в этом браузере</p><div class="add-form"><label>Английское *</label><input id="awTerm" type="text" autocomplete="off" spellcheck="false"><label>Русский перевод *</label><input id="awDef" type="text" autocomplete="off"><label>Транскрипция</label><input id="awPhon" type="text"><label>Пример</label><textarea id="awEx" rows="2"></textarea><label>Эмодзи</label><div class="emoji-row" id="awEmojiRow">'+emojiHtml+'</div><input type="hidden" id="awEmoji" value="📝"><div class="feedback" id="awFb"></div><button class="btn btn-lg" type="button" id="awSave" style="margin-top:.7rem">Сохранить</button><button class="btn btn-ghost btn-lg" type="button" id="awCancel" style="margin-top:.3rem">Отмена</button></div>');document.querySelectorAll("#awEmojiRow .emoji-pick").forEach(function(btn){btn.onclick=function(){document.querySelectorAll("#awEmojiRow .emoji-pick").forEach(function(b){b.classList.remove("selected");});btn.classList.add("selected");$("awEmoji").value=btn.getAttribute("data-e");};});$("awCancel").onclick=closeSheet;$("awSave").onclick=function(){var term=($("awTerm").value||"").trim(),def=($("awDef").value||"").trim(),phon=($("awPhon").value||"").trim(),ex=($("awEx").value||"").trim(),emoji=$("awEmoji").value||"📝",fb=$("awFb");if(!term||!def){fb.className="feedback show err";fb.textContent="Нужны слово и перевод";return;}if(!ex)ex="This is "+term+".";var res=addCustomWord({term:term,phonetic:phon,definition:def,example:ex,emoji:emoji,note:"своё слово",custom:true});if(!res.ok){fb.className="feedback show err";fb.textContent=res.msg;return;}fb.className="feedback show ok";fb.textContent="✓ Добавлено";setTimeout(function(){closeSheet();renderStudy();updateHeaderStats();},500);};}
+
+function init(){loadState();if(!state.customWords)state.customWords=[];if(!state.photos)state.photos={};if(!state.badges)state.badges={};updateHeaderStats();updateDueBar();goHome();
+$("btnMenu").onclick=openMenu;$("overlay").onclick=closeMenu;$("btnBack").onclick=handleBack;
+$("dueBar").onclick=function(){state.modeSet=getDueTerms();startMode("review");};
+$("sheetOverlay").onclick=closeSheet;$("menuHome").onclick=function(){closeMenu();goHome();};
+$("navHome").onclick=goHome;$("navPractice").onclick=function(){state.modeSet=getAllTerms();startMode("practiceHub");};
+$("navReview").onclick=function(){state.modeSet=getDueTerms();startMode("review");};$("navProgress").onclick=function(){startMode("progress");};
+document.querySelectorAll(".menu-item[data-mode]").forEach(function(btn){btn.onclick=function(){var mode=btn.getAttribute("data-mode");state.modeSet=(mode==="difficult"||mode==="progress"||mode==="review")?[]:getAllTerms();startMode(mode);};});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+
+</script>
+</body>
+</html>
