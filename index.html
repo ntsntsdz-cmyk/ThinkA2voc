@@ -1,274 +1,217 @@
-.DS_Store
-Thumbs.db
-*.log
-.node_modules/
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#7c3aed">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Vocab Trainer · 10 Units</title>
+<meta name="theme-color" content="#3b82f6">
+<title>Vocab Trainer · Course Navigator</title>
 <style>
-:root{
-  --primary:#7c3aed;--primary-soft:#f3e8ff;--text:#1e1b4b;--muted:#6b7280;
-  --card:#fff;--bg:#faf5ff;--border:#e9d5ff;
-  --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
-}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text)}
-.wrap{max-width:520px;margin:0 auto;padding-bottom:calc(1.5rem + var(--safe-bottom))}
-.header{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;padding:calc(1.1rem + var(--safe-top)) 1.2rem 1.4rem;box-shadow:0 4px 20px rgba(124,58,237,.3)}
-.header h1{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
-.header p{opacity:.92;font-size:.9rem;margin-top:.35rem;line-height:1.4}
-.stats{display:flex;gap:.5rem;margin-top:.85rem;flex-wrap:wrap}
-.stats span{background:rgba(255,255,255,.22);padding:.3rem .65rem;border-radius:999px;font-size:.78rem;font-weight:700}
-.main{padding:1rem 1rem 0}
-.unit{background:var(--card);border-radius:18px;box-shadow:0 4px 18px rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.1);margin-bottom:1rem;overflow:hidden}
-.unit-head{display:flex;align-items:center;gap:.85rem;padding:1rem 1rem .75rem}
-.unit-num{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0}
-.unit-head h2{font-size:1.05rem;font-weight:800}
-.unit-head p{font-size:.82rem;color:var(--muted);margin-top:.1rem}
-.lessons{display:flex;flex-direction:column;padding:0 .75rem .85rem;gap:.4rem}
-.lesson{display:flex;align-items:center;gap:.65rem;padding:.7rem .75rem;border-radius:12px;text-decoration:none;color:var(--text);border:1.5px solid var(--border);background:#fff;transition:transform .12s}
-.lesson:active{transform:scale(.98)}
-.lesson .num{width:28px;height:28px;border-radius:8px;background:var(--primary-soft);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
-.lesson .lt{flex:1;font-size:.9rem;font-weight:650}
-.lesson .badge{font-size:.75rem;font-weight:800;color:var(--primary)}
-.lesson.soon{opacity:.55}
-.lesson.soon .badge{color:var(--muted)}
-.lesson.ready{border-color:#c4b5fd}
-.tip{background:linear-gradient(135deg,#f3e8ff,#fce7f3);border-radius:14px;padding:1rem;margin:0 0 1rem;font-size:.85rem;line-height:1.45;color:#5b21b6}
-.footer{text-align:center;padding:1rem;color:var(--muted);font-size:.8rem}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+    min-height: 100vh;
+    padding: 1.5rem 1rem 2.5rem;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-bottom: 1.5rem;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+  }
+  .logo h1 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .unit {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    padding: 1.1rem 1.15rem 1.15rem;
+    margin-bottom: 0.85rem;
+  }
+  .unit h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .lessons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .lessons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.9rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    color: #1f2937;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.15s, border-color 0.15s;
+    min-height: 40px;
+  }
+  .lessons a:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+  }
+  .lessons a.ready {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+  }
+  .lessons a.review {
+    background: #f5f3ff;
+    border-color: #c4b5fd;
+    color: #6d28d9;
+  }
+  @media (max-width: 480px) {
+    .lessons a {
+      flex: 1 1 calc(50% - 0.5rem);
+      font-size: 0.85rem;
+      padding: 0.5rem 0.6rem;
+    }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="header">
-    <h1>✨ Vocab Trainer</h1>
-    <p>10 юнитов · по 5 уроков · учи слова в своём темпе</p>
-    <div class="stats">
-      <span>10 Units</span>
-      <span>50 Lessons</span>
-      <span>Unit 1 · 3 ready</span>
+  <div class="logo">
+    <div class="logo-icon"></div>
+    <h1>Vocab Trainer Navigator</h1>
+  </div>
+
+  <section class="unit">
+    <h2>Unit 1</h2>
+    <div class="lessons">
+      <a class="ready" href="units/unit-01/lesson-01.html">Lesson 1A</a>
+      <a class="ready" href="units/unit-01/lesson-02.html">Lesson 1B</a>
+      <a class="ready" href="units/unit-01/lesson-03.html">Lesson 1C</a>
+      <a href="units/unit-01/lesson-04.html">Lesson 1D</a>
+      <a class="review" href="units/unit-01/lesson-05.html">Unit 1 Review</a>
     </div>
-  </header>
-  <main class="main">
-    <div class="tip">💡 Нажми на урок, чтобы открыть. Готовые уроки отмечены ✓. Остальные — заглушки: замени HTML-файл, когда добавишь слова.</div>
-    
-    <section class="unit" id="unit-1">
-      <div class="unit-head">
-        <div class="unit-num">1</div>
-        <div>
-          <h2>Unit 1</h2>
-          <p>Everyday English</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson ready" href="units/unit-01/lesson-01.html"><span class="num">1</span><span class="lt">Повседневные занятия</span><span class="badge">✓</span></a><a class="lesson ready" href="units/unit-01/lesson-02.html"><span class="num">2</span><span class="lt">Daily routines & gadgets</span><span class="badge">✓</span></a><a class="lesson ready" href="units/unit-01/lesson-03.html"><span class="num">3</span><span class="lt">Everyday phrases</span><span class="badge">✓</span></a><a class="lesson soon" href="units/unit-01/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-01/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-2">
-      <div class="unit-head">
-        <div class="unit-num">2</div>
-        <div>
-          <h2>Unit 2</h2>
-          <p>School & Friends</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-02/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-02/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-02/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-02/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-02/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-3">
-      <div class="unit-head">
-        <div class="unit-num">3</div>
-        <div>
-          <h2>Unit 3</h2>
-          <p>Home & Family</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-03/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-03/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-03/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-03/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-03/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-4">
-      <div class="unit-head">
-        <div class="unit-num">4</div>
-        <div>
-          <h2>Unit 4</h2>
-          <p>Food & Health</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-04/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-04/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-04/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-04/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-04/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-5">
-      <div class="unit-head">
-        <div class="unit-num">5</div>
-        <div>
-          <h2>Unit 5</h2>
-          <p>Free Time</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-05/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-05/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-05/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-05/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-05/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-6">
-      <div class="unit-head">
-        <div class="unit-num">6</div>
-        <div>
-          <h2>Unit 6</h2>
-          <p>Travel & Places</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-06/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-06/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-06/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-06/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-06/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-7">
-      <div class="unit-head">
-        <div class="unit-num">7</div>
-        <div>
-          <h2>Unit 7</h2>
-          <p>Weather & Nature</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-07/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-07/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-07/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-07/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-07/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-8">
-      <div class="unit-head">
-        <div class="unit-num">8</div>
-        <div>
-          <h2>Unit 8</h2>
-          <p>Shopping & Clothes</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-08/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-08/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-08/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-08/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-08/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-9">
-      <div class="unit-head">
-        <div class="unit-num">9</div>
-        <div>
-          <h2>Unit 9</h2>
-          <p>Feelings & Opinions</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-09/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-09/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-09/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-09/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-09/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-    <section class="unit" id="unit-10">
-      <div class="unit-head">
-        <div class="unit-num">10</div>
-        <div>
-          <h2>Unit 10</h2>
-          <p>Future & Dreams</p>
-        </div>
-      </div>
-      <div class="lessons">
-        <a class="lesson soon" href="units/unit-10/lesson-01.html"><span class="num">1</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-10/lesson-02.html"><span class="num">2</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-10/lesson-03.html"><span class="num">3</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-10/lesson-04.html"><span class="num">4</span><span class="lt">Coming soon</span><span class="badge">…</span></a><a class="lesson soon" href="units/unit-10/lesson-05.html"><span class="num">5</span><span class="lt">Coming soon</span><span class="badge">…</span></a>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">HTML5 · работает на iPhone · GitHub Pages ready</footer>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 2</h2>
+    <div class="lessons">
+      <a href="units/unit-02/lesson-01.html">Lesson 2A</a>
+      <a href="units/unit-02/lesson-02.html">Lesson 2B</a>
+      <a href="units/unit-02/lesson-03.html">Lesson 2C</a>
+      <a href="units/unit-02/lesson-04.html">Lesson 2D</a>
+      <a class="review" href="units/unit-02/lesson-05.html">Unit 2 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 3</h2>
+    <div class="lessons">
+      <a href="units/unit-03/lesson-01.html">Lesson 3A</a>
+      <a href="units/unit-03/lesson-02.html">Lesson 3B</a>
+      <a href="units/unit-03/lesson-03.html">Lesson 3C</a>
+      <a href="units/unit-03/lesson-04.html">Lesson 3D</a>
+      <a class="review" href="units/unit-03/lesson-05.html">Unit 3 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 4</h2>
+    <div class="lessons">
+      <a href="units/unit-04/lesson-01.html">Lesson 4A</a>
+      <a href="units/unit-04/lesson-02.html">Lesson 4B</a>
+      <a href="units/unit-04/lesson-03.html">Lesson 4C</a>
+      <a href="units/unit-04/lesson-04.html">Lesson 4D</a>
+      <a class="review" href="units/unit-04/lesson-05.html">Unit 4 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 5</h2>
+    <div class="lessons">
+      <a href="units/unit-05/lesson-01.html">Lesson 5A</a>
+      <a href="units/unit-05/lesson-02.html">Lesson 5B</a>
+      <a href="units/unit-05/lesson-03.html">Lesson 5C</a>
+      <a href="units/unit-05/lesson-04.html">Lesson 5D</a>
+      <a class="review" href="units/unit-05/lesson-05.html">Unit 5 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 6</h2>
+    <div class="lessons">
+      <a href="units/unit-06/lesson-01.html">Lesson 6A</a>
+      <a href="units/unit-06/lesson-02.html">Lesson 6B</a>
+      <a href="units/unit-06/lesson-03.html">Lesson 6C</a>
+      <a href="units/unit-06/lesson-04.html">Lesson 6D</a>
+      <a class="review" href="units/unit-06/lesson-05.html">Unit 6 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 7</h2>
+    <div class="lessons">
+      <a href="units/unit-07/lesson-01.html">Lesson 7A</a>
+      <a href="units/unit-07/lesson-02.html">Lesson 7B</a>
+      <a href="units/unit-07/lesson-03.html">Lesson 7C</a>
+      <a href="units/unit-07/lesson-04.html">Lesson 7D</a>
+      <a class="review" href="units/unit-07/lesson-05.html">Unit 7 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 8</h2>
+    <div class="lessons">
+      <a href="units/unit-08/lesson-01.html">Lesson 8A</a>
+      <a href="units/unit-08/lesson-02.html">Lesson 8B</a>
+      <a href="units/unit-08/lesson-03.html">Lesson 8C</a>
+      <a href="units/unit-08/lesson-04.html">Lesson 8D</a>
+      <a class="review" href="units/unit-08/lesson-05.html">Unit 8 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 9</h2>
+    <div class="lessons">
+      <a href="units/unit-09/lesson-01.html">Lesson 9A</a>
+      <a href="units/unit-09/lesson-02.html">Lesson 9B</a>
+      <a href="units/unit-09/lesson-03.html">Lesson 9C</a>
+      <a href="units/unit-09/lesson-04.html">Lesson 9D</a>
+      <a class="review" href="units/unit-09/lesson-05.html">Unit 9 Review</a>
+    </div>
+  </section>
+
+  <section class="unit">
+    <h2>Unit 10</h2>
+    <div class="lessons">
+      <a href="units/unit-10/lesson-01.html">Lesson 10A</a>
+      <a href="units/unit-10/lesson-02.html">Lesson 10B</a>
+      <a href="units/unit-10/lesson-03.html">Lesson 10C</a>
+      <a href="units/unit-10/lesson-04.html">Lesson 10D</a>
+      <a class="review" href="units/unit-10/lesson-05.html">Unit 10 Review</a>
+    </div>
+  </section>
 </div>
 </body>
 </html>
-
-# Vocab Trainer (HTML5)
-
-Teen-friendly vocabulary trainer. **10 units × 5 lessons = 50 slots**.
-
-Works offline in the browser (Safari / Chrome). Progress is saved in `localStorage` per lesson.
-
-## Structure
-
-```
-vocab-trainer/
-├── index.html                 # Hub: all units & lessons
-├── README.md
-└── units/
-    ├── unit-01/
-    │   ├── lesson-01.html     # Ready: Повседневные занятия
-    │   ├── lesson-02.html     # Ready: Daily routines
-    │   ├── lesson-03.html     # Ready: Everyday phrases
-    │   ├── lesson-04.html     # Placeholder
-    │   └── lesson-05.html     # Placeholder
-    ├── unit-02/ … unit-10/    # 5 placeholders each
-```
-
-## Features (ready lessons)
-
-- Flashcards, matching, quiz, gaps, word order, spelling, sentences, pronunciation
-- **Story mode** — write a mini-story with 3 words
-- **YouGlish** — hear native speakers
-- Custom photos per word
-- XP, levels, badges, combos, daily goal
-- User-paced feedback (“Далее →”)
-
-## Upload to GitHub
-
-### 1. Create a repo on GitHub
-- Go to https://github.com/new  
-- Name e.g. `vocab-trainer`  
-- Public (needed for free GitHub Pages)  
-- **Do not** add README if you already have this folder
-
-### 2. From this folder (terminal)
-
-```bash
-cd vocab-trainer
-git init
-git add .
-git commit -m "Initial commit: 10 units x 5 lessons"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/vocab-trainer.git
-git push -u origin main
-```
-
-### 3. Enable GitHub Pages
-- Repo → **Settings** → **Pages**  
-- Source: **Deploy from a branch**  
-- Branch: `main` / folder `/ (root)`  
-- Save  
-
-Site URL will be:
-
-`https://YOUR_USERNAME.github.io/vocab-trainer/`
-
-### 4. Add a new lesson later
-
-1. Copy a ready file, e.g. `units/unit-01/lesson-01.html`  
-2. Replace the `WORDS=[...]` list and titles  
-3. Save as `units/unit-XX/lesson-YY.html`  
-4. Update the title in `index.html` if needed  
-5. Commit and push:
-
-```bash
-git add .
-git commit -m "Add Unit X Lesson Y"
-git push
-```
-
-## Local preview
-
-Open `index.html` in a browser, or:
-
-```bash
-npx --yes serve .
-```
-
-## Note on storage
-
-Each lesson uses its own `localStorage` key (`vocab_1A_v2`, etc.).  
-Photos are stored as compressed JPEG data URLs — keep them small.
